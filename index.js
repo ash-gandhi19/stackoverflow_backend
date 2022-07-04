@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 var path = require("path");
+var cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
