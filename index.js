@@ -29,24 +29,17 @@ var PORT = normalizePort(process.env.PORT);
     app.use(cookieParser());
     app.use(express.static(path.join(__dirname, "public")));
     app.use(express.json());
-app.use(helmet());
-  app.use(morgan("common"));
-  app.use(
-    cors({
-      origin: process.env.FRONTEND,
-    })
-  );
+    app.use(helmet());
+    app.use(morgan("common"));
+    app.use(cors());
 
-  
-  
+    app.use("/auth", authRoute);
 
-  app.use("/auth", authRoute);
+    app.use("/users", usersRoute);
 
-  app.use("/users", usersRoute);
+    app.use("/questions", questionsRoute);
 
-  app.use("/questions", questionsRoute);
-
-  app.use("/comments", commentsRoute);
+    app.use("/comments", commentsRoute);
 
   app.use("/answers", answersRoute);
  /* app.listen(port, () => {
