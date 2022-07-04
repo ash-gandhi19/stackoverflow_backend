@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
-
+ dotenv.config();
 const usersRoute = require("./routes/users.route");
 const authRoute = require("./routes/auth.route");
 const questionsRoute = require("./routes/questions.route");
@@ -12,13 +12,13 @@ const commentsRoute = require("./routes/comments.route");
 const answersRoute = require("./routes/answers.route");
 
 const main = async () => {
-  dotenv.config();
+  
 
   // Connecting to mongoDb Atlas
   mongoose.connect(process.env.MONGO_URL);
 
   const app = express();
-
+var port = normalizePort(process.env.PORT);
   // Middlewares
   app.use(
     cors({
@@ -39,8 +39,8 @@ const main = async () => {
   app.use("/comments", commentsRoute);
 
   app.use("/answers", answersRoute);
-  app.listen(process.env.PORT, () => {
-    console.log(`API is ready on http://localhost:${process.env.PORT}`);
+  app.listen(port, () => {
+    console.log(`API is ready on http://localhost:${port}`);
   });
 };
 
